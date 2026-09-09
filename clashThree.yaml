@@ -20,23 +20,26 @@ dns:
   listen: 0.0.0.0:8888
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  # fake-ip-filter 顺序不影响命中（集合排除）；仅按宽→窄分组好看
   fake-ip-filter:
-    - "*.lan"
+    - geosite:private
+    - +.lan
+    - +.local
+    - +.msftconnecttest.com
+    - +.msftncsi.com
     - localhost.ptlogin2.qq.com
     - +.srv.nintendo.net
     - +.stun.playstation.net
-    - +.msftconnecttest.com
-    - +.msftncsi.com
     - +.xboxlive.com
     - xbox.*.microsoft.com
-    - "*.battlenet.com.cn"
-    - "*.battlenet.com"
-    - "*.blzstatic.cn"
-    - "*.battle.net"
-    - "+.trycloudflare.com"
-    - "+.argotunnel.com"
-    - "+.tailscale.com"
-    - "+.tailscale.io"
+    - +.battlenet.com.cn
+    - +.battlenet.com
+    - +.blzstatic.cn
+    - +.battle.net
+    - +.trycloudflare.com
+    - +.argotunnel.com
+    - +.tailscale.com
+    - +.tailscale.io
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -69,7 +72,11 @@ p1:
     type: http,
     interval: 86400,
     health-check:
-      { enable: true, url: https://www.gstatic.com/generate_204, interval: 300 },
+      {
+        enable: true,
+        url: https://www.gstatic.com/generate_204,
+        interval: 300,
+      },
   }
 p2: &a2 { type: select, use: [Subscribe, Subscribe2, Subscribe3] }
 p3:
@@ -136,26 +143,67 @@ proxy-groups:
   - { name: 🚀 手动切换, <<: *a2 }
   - { name: ♻️ 自动选择, <<: *a4 }
   - { name: 🆎 AdBlock, type: select, proxies: [REJECT, DIRECT] }
-  - { name: 🤖 AI, type: select, proxies: [🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇫🇷 法国节点] }
+  - {
+      name: 🤖 AI,
+      type: select,
+      proxies:
+        [🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇫🇷 法国节点],
+    }
   - {
       name: 📺 哔哩哔哩,
       type: select,
       proxies: [DIRECT, 🇭🇰 香港节点, 🇹🇼 台湾节点],
     }
+  # UI 对齐 QX policy：哔哩 → 国际 → 苹果 →（Clash 专用）→ 全球 → 兜底
   - { name: 🎬 国际媒体, <<: *a3 }
   - { name: 🍎 苹果服务, <<: *a3 }
-  - { name: 🌏 全球加速, <<: *a3 }
   - { name: 🌌 谷歌服务, <<: *a3 }
   - { name: 📟 电报消息, <<: *a3 }
   - { name: 🎮 游戏平台, <<: *a3 }
+  - { name: 🌏 全球加速, <<: *a3 }
   - { name: 🐟 兜底分流, <<: *a3 }
-  - { name: 🇭🇰 香港节点, <<: *a4, filter: "港|HK|(?i)Hong" }
-  - { name: 🇹🇼 台湾节点, <<: *a4, filter: "台|湾|TW|(?i)Taiwan" }
-  - { name: 🇯🇵 日本节点, <<: *a4, filter: "日|东京|JP|(?i)Japan" }
-  - { name: 🇸🇬 狮城节点, <<: *a4, filter: "新|坡|SG|(?i)Singapore", exclude-filter: "新西兰|NZ" }
-  - { name: 🇺🇸 美国节点, <<: *a4, filter: "美|US|(?i)States|American", exclude-filter: "澳|俄|AUS|RUS" }
-  - { name: 🇩🇪 德国节点, <<: *a4, filter: "德|DE|(?i)Germany" }
-  - { name: 🇫🇷 法国节点, <<: *a4, filter: "法|FR|(?i)France", exclude-filter: "法兰克福" }
+  - {
+      name: 🇭🇰 香港节点,
+      <<: *a4,
+      filter: "港|HK|(?i)Hong",
+      exclude-filter: "台|日|韩|新|美|德|法",
+    }
+  - {
+      name: 🇹🇼 台湾节点,
+      <<: *a4,
+      filter: "台|湾|TW|(?i)Taiwan",
+      exclude-filter: "港|日|韩|新|美|德|法",
+    }
+  - {
+      name: 🇯🇵 日本节点,
+      <<: *a4,
+      filter: "日|东京|JP|(?i)Japan",
+      exclude-filter: "港|台|韩|新|美|德|法",
+    }
+  - {
+      name: 🇸🇬 狮城节点,
+      <<: *a4,
+      filter: "新|坡|狮|獅|SG|(?i)Singapore",
+      exclude-filter: "港|台|日|韩|美|德|法|新西兰|NZ",
+    }
+  - {
+      name: 🇺🇸 美国节点,
+      <<: *a4,
+      filter: "美|US|(?i)States|American",
+      exclude-filter: "港|台|日|韩|新|德|法|澳|俄|AUS|RUS",
+    }
+  - {
+      name: 🇩🇪 德国节点,
+      <<: *a4,
+      filter: "德|DE|(?i)Germany",
+      exclude-filter: "港|台|日|韩|新|美",
+    }
+  - {
+      name: 🇫🇷 法国节点,
+      <<: *a4,
+      filter: "法|FR|(?i)France",
+      exclude-filter: "港|台|日|韩|新|美|德|法兰克福",
+    }
 rule-providers:
   Direct:
     {
@@ -265,14 +313,15 @@ rules:
   - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
   - GEOIP,LAN,DIRECT,no-resolve
   - RULE-SET,Download,DIRECT
+  # 对齐 QX filter：Ad → AI → Github → 哔哩 → 国际 → 苹果 → 专用 → 全球大桶 → CN
   - RULE-SET,Ad,🆎 AdBlock
   - RULE-SET,AiGlobal,🤖 AI
+  - RULE-SET,Github,🌏 全球加速
+  - RULE-SET,Microsoft,🌏 全球加速
   - RULE-SET,BiliBili,📺 哔哩哔哩
   - RULE-SET,Bahamut,📺 哔哩哔哩
   - RULE-SET,GlobalMedia,🎬 国际媒体
   - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Github,🌏 全球加速
-  - RULE-SET,Microsoft,🌏 全球加速
   - RULE-SET,Google,🌌 谷歌服务
   - RULE-SET,Telegram,📟 电报消息
   - RULE-SET,Twitter,🌏 全球加速
