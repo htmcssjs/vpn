@@ -1,7 +1,6 @@
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
+mixed-port: 7897
+socks-port: 7898
+port: 7899
 allow-lan: false
 bind-address: "*"
 mode: rule
@@ -70,7 +69,11 @@ p1:
     type: http,
     interval: 86400,
     health-check:
-      { enable: true, url: https://www.gstatic.com/generate_204, interval: 300 },
+      {
+        enable: true,
+        url: https://www.gstatic.com/generate_204,
+        interval: 300,
+      },
   }
 p2: &a2 { type: select, use: [Subscribe] }
 p3:
@@ -129,7 +132,12 @@ proxy-groups:
   - { name: 🚀 手动切换, <<: *a2 }
   - { name: ♻️ 自动选择, <<: *a4 }
   - { name: 🆎 AdBlock, type: select, proxies: [REJECT, DIRECT] }
-  - { name: 🤖 AI, type: select, proxies: [🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇫🇷 法国节点] }
+  - {
+      name: 🤖 AI,
+      type: select,
+      proxies:
+        [🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇫🇷 法国节点],
+    }
   - {
       name: 📺 哔哩哔哩,
       type: select,
@@ -145,10 +153,25 @@ proxy-groups:
   - { name: 🇭🇰 香港节点, <<: *a4, filter: "港|HK|(?i)Hong" }
   - { name: 🇹🇼 台湾节点, <<: *a4, filter: "台|湾|TW|(?i)Taiwan" }
   - { name: 🇯🇵 日本节点, <<: *a4, filter: "日|东京|JP|(?i)Japan" }
-  - { name: 🇸🇬 狮城节点, <<: *a4, filter: "新|坡|SG|(?i)Singapore", exclude-filter: "新西兰|NZ" }
-  - { name: 🇺🇸 美国节点, <<: *a4, filter: "美|US|(?i)States|American", exclude-filter: "澳|俄|AUS|RUS" }
+  - {
+      name: 🇸🇬 狮城节点,
+      <<: *a4,
+      filter: "新|坡|SG|(?i)Singapore",
+      exclude-filter: "新西兰|NZ",
+    }
+  - {
+      name: 🇺🇸 美国节点,
+      <<: *a4,
+      filter: "美|US|(?i)States|American",
+      exclude-filter: "澳|俄|AUS|RUS",
+    }
   - { name: 🇩🇪 德国节点, <<: *a4, filter: "德|DE|(?i)Germany" }
-  - { name: 🇫🇷 法国节点, <<: *a4, filter: "法|FR|(?i)France", exclude-filter: "法兰克福" }
+  - {
+      name: 🇫🇷 法国节点,
+      <<: *a4,
+      filter: "法|FR|(?i)France",
+      exclude-filter: "法兰克福",
+    }
 rule-providers:
   Direct:
     {
