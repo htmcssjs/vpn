@@ -149,7 +149,6 @@ proxy-groups:
       type: select,
       proxies: [DIRECT, 🇭🇰 香港节点, 🇹🇼 台湾节点],
     }
-  # UI 对齐 QX policy：哔哩 → 国际 → 苹果 →（Clash 专用）→ 全球 → 兜底
   - { name: 🎬 国际媒体, <<: *a3 }
   - { name: 🍎 苹果服务, <<: *a3 }
   - { name: 🌌 谷歌服务, <<: *a3 }
