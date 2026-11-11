@@ -308,7 +308,6 @@ rules:
   - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
   - GEOIP,LAN,DIRECT,no-resolve
   - RULE-SET,Download,DIRECT
-  # 对齐 QX filter：Ad → AI → Github → 哔哩 → 国际 → 苹果 → 专用 → 全球大桶 → CN
   - RULE-SET,Ad,🆎 AdBlock
   - RULE-SET,AiGlobal,🤖 AI
   - RULE-SET,Github,🌏 全球加速
