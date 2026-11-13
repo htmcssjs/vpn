@@ -306,7 +306,6 @@ rules:
   - DOMAIN-SUFFIX,argotunnel.com,DIRECT
   - DOMAIN-SUFFIX,tailscale.com,DIRECT
   - DOMAIN-SUFFIX,tailscale.io,DIRECT
-  - RULE-SET,Direct,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
@@ -328,6 +327,7 @@ rules:
   - RULE-SET,Twitter,🌏 全球加速
   - RULE-SET,Game,🎮 游戏平台
   - RULE-SET,ProxyLite,🌏 全球加速
+  - RULE-SET,Direct,DIRECT
   - GEOSITE,cn,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,🐟 兜底分流
