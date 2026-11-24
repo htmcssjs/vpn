@@ -8,9 +8,9 @@ log-level: info
 ipv6: false
 find-process-mode: always
 geox-url:
-  geoip: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
-  geosite: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
-  mmdb: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
+  geoip: https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+  geosite: https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+  mmdb: https://cdn.jsdmirror.com/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
 geo-auto-update: true
 geo-update-interval: 24
 external-controller: 127.0.0.1:9090
@@ -198,91 +198,91 @@ rule-providers:
   Direct:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml,
       path: ./ruleset/Direct.yaml,
     }
   Download:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Download/Download.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Download/Download.yaml,
       path: ./ruleset/Download.yaml,
     }
   Ad:
     {
       <<: *a5,
-      url: https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-clash.yaml,
+      url: https://cdn.jsdmirror.com/gh/privacy-protection-tools/anti-AD@master/anti-ad-clash.yaml,
       path: ./ruleset/anti-ad-clash.yaml,
     }
   AiGlobal:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/clash/global.yaml,
+      url: https://cdn.jsdmirror.com/gh/VPSDance/ai-proxy-rules@main/rules/clash/global.yaml,
       path: ./ruleset/ai-global.yaml,
     }
   BiliBili:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml,
       path: ./ruleset/BiliBili.yaml,
     }
   Bahamut:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml,
       path: ./ruleset/Bahamut.yaml,
     }
   GlobalMedia:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml,
       path: ./ruleset/GlobalMedia.yaml,
     }
   Apple:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml,
       path: ./ruleset/Apple.yaml,
     }
   Github:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml,
       path: ./ruleset/Github.yaml,
     }
   Microsoft:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml,
       path: ./ruleset/Microsoft.yaml,
     }
   Google:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml,
       path: ./ruleset/Google.yaml,
     }
   Telegram:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml,
       path: ./ruleset/Telegram.yaml,
     }
   Twitter:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml,
       path: ./ruleset/Twitter.yaml,
     }
   Game:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml,
       path: ./ruleset/Game.yaml,
     }
   ProxyLite:
     {
       <<: *a6,
-      url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ProxyLite/ProxyLite.yaml,
+      url: https://cdn.jsdmirror.com/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ProxyLite/ProxyLite.yaml,
       path: ./ruleset/ProxyLite.yaml,
     }
 rules:
